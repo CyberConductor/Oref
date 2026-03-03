@@ -88,8 +88,8 @@ This app analyses rocket alerts received during the last operations in Israel, g
 ```bash
 git clone https://github.com/yourusername/alertsapp.git
 ```
-2. פתח את הפרויקט ב-Android studio.
+2.פתח את הפרויקט ב-Android studio.
 
-3. הרץ על אמולטור או באמצעות טלפון אנדרואיד.
+3.הרץ על אמולטור או באמצעות טלפון אנדרואיד.
 
-4. הזן עיר ובחר טווח תאריכים כדי לראות את הסטטיסטיקה.
+4.הזן עיר ובחר טווח תאריכים כדי לראות את הסטטיסטיקה.
