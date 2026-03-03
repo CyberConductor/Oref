@@ -93,6 +93,16 @@ public class AlertAnalyzer {
         return sb.toString();
     }
     public static List<EventDuration> calculateDurations(List<Alert> alerts) {
+        alerts.sort((a, b) -> {
+            String da = a.getAlertDate() != null ? a.getAlertDate() : "";
+            String db = b.getAlertDate() != null ? b.getAlertDate() : "";
+            int cmp = da.compareTo(db);
+            if (cmp != 0) return cmp;
+
+            String ta = a.getTime() != null ? a.getTime() : "";
+            String tb = b.getTime() != null ? b.getTime() : "";
+            return ta.compareTo(tb);
+        });
         List<EventDuration> result = new ArrayList<>();
         Map<String, Alert> openEvents = new HashMap<>();
 
@@ -143,7 +153,12 @@ public class AlertAnalyzer {
             int startTotal = startHour * 60 + startMin;
             int endTotal = endHour * 60 + endMin;
 
+            if (endTotal < startTotal) {
+                endTotal += 24 * 60;
+            }
+
             return endTotal - startTotal;
+
         } catch (Exception e) {
             return 0;
         }

@@ -14,7 +14,9 @@ import com.github.mikephil.charting.formatter.ValueFormatter;
 import java.util.*;
 
 public class MainActivity extends AppCompatActivity {
-
+    private LinearLayout layoutSummary;
+    private LinearLayout layoutStats;
+    private LinearLayout layoutLegend;
     private EditText etCity, etFromDate, etToDate;
     private RadioGroup rgMode;
     private LinearLayout layoutCustomDates;
@@ -55,8 +57,10 @@ public class MainActivity extends AppCompatActivity {
         barChart = findViewById(R.id.barChart);
         recyclerView = findViewById(R.id.tabAlerts);
         tabHost = findViewById(R.id.tabHost);
-
         btnSearch.setOnClickListener(v -> fetchAlerts());
+        layoutSummary = findViewById(R.id.layoutSummary);
+        layoutStats = findViewById(R.id.layoutStats);
+        layoutLegend = findViewById(R.id.layoutLegend);
     }
 
     private void setupTabs() {
@@ -139,11 +143,55 @@ public class MainActivity extends AppCompatActivity {
                     });
 
                     alertAdapter.setAlerts(alerts);
-
+                    layoutSummary.setVisibility(View.VISIBLE);
+                    layoutStats.setVisibility(View.VISIBLE);
+                    layoutLegend.setVisibility(View.VISIBLE);
                     AlertAnalyzer.AnalysisResult result = AlertAnalyzer.analyze(alerts);
                     tvSummary.setText(result.riskSummary);
                     updateChart(result);
                     barChart.setVisibility(View.VISIBLE);
+
+                    List<EventDuration> durations = AlertAnalyzer.calculateDurations(alerts);
+                    Map<String, List<Long>> durationMap = new HashMap<>();
+
+                    for (EventDuration d : durations) {
+                        durationMap.putIfAbsent(d.getCategory(), new ArrayList<>());
+                        durationMap.get(d.getCategory()).add(d.getDurationMinutes());
+                    }
+
+                    StringBuilder avgStayText = new StringBuilder("\nזמן משוער לצאת מהממד:\n");
+                    for (Map.Entry<String, List<Long>> entry : durationMap.entrySet()) {
+                        List<Long> times = entry.getValue();
+                        long sum = 0;
+                        for (Long t : times) sum += t;
+                        long avg = times.isEmpty() ? 0 : sum / times.size();
+
+                        Alert lastAlert = null;
+                        for (int i = alerts.size() - 1; i >= 0; i--) {
+                            Alert a = alerts.get(i);
+                            if (a.getBaseCategory().equals(entry.getKey()) && a.getAlertType() == Alert.AlertType.DANGER) {
+                                lastAlert = a;
+                                break;
+                            }
+                        }
+
+                        if (lastAlert != null) {
+
+                            avgStayText.append(entry.getKey())
+                                    .append(": זמן שהות ממוצע ")
+                                    .append(avg)
+                                    .append(" דקות");
+
+                            avgStayText.append(" (מבוסס על ")
+                                    .append(times.size())
+                                    .append(" אירועים)");
+
+                            avgStayText.append("\n\n");
+                        }
+
+
+                    }
+                    tvSummary.setText(tvSummary.getText() + avgStayText.toString());
                 });
             }
 
