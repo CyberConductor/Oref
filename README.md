@@ -82,8 +82,8 @@ This app analyses rocket alerts received during the last operations in Israel, g
 
 
 ### התקנה
+1העתק את הפרויקט באמצעות גיט.
 
-1. שכפל את הריפוזיטורי:
 
 ```bash
 git clone https://github.com/yourusername/alertsapp.git
