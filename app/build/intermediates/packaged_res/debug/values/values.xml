@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#F5F7FA</color>
+    <color name="divider">#E0E0E0</color>
+    <color name="primary">#1565C0</color>
+    <color name="primary_dark">#0D47A1</color>
+    <color name="primary_light">#E3F2FD</color>
+    <color name="risk_high">#E53935</color>
+    <color name="risk_low">#2E7D32</color>
+    <color name="risk_medium">#F57F17</color>
+    <color name="risk_very_high">#C62828</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="text_primary">#1A1A2E</color>
+    <color name="text_secondary">#6B7280</color>
+    <string name="app_name">מגן ישראל</string>
+    <style name="Theme.AlertsApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#CC2222</item>
+        <item name="colorPrimaryVariant">#991111</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="android:windowBackground">#0F0F1A</item>
+    </style>
+</resources>
