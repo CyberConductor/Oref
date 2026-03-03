@@ -28,7 +28,7 @@ The app calculates per-hour statistics, highlights the peak danger hours, and sh
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/alertsapp.git
+git clone https://github.com/CyberConductor/Oref.git
 ```
 
 2. Open in Android Studio.
@@ -86,7 +86,7 @@ This app analyses rocket alerts received during the last operations in Israel, g
 
 
 ```bash
-git clone https://github.com/yourusername/alertsapp.git
+git clone https://github.com/CyberConductor/Oref.git
 ```
 2.פתח את הפרויקט ב-Android studio.
 
