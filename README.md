@@ -1,6 +1,6 @@
 # AlertsApp – Rocket & Missile Alert Statistics
 
-[English Version](#english-version) | [גרסת עברית](#גרסת-עברית)
+[English Version](#english-version) | [גרסת עברית](#hebrew-version-גרסת-עברית)
 
 
 
