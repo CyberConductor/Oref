@@ -3076,8 +3076,9 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable tab_bg
+drawable tab_bg_selected
 drawable test_level_drawable
-drawable time_badge_bg
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 id ALT
@@ -3317,6 +3318,9 @@ id jumpToStart
 id labeled
 id layout
 id layoutCustomDates
+id layoutLegend
+id layoutStats
+id layoutSummary
 id left
 id leftToRight
 id legacy
@@ -3570,10 +3574,12 @@ id transition_transform
 id triangle
 id tvCategory
 id tvCity
+id tvDangerCount
 id tvDate
 id tvNoData
 id tvSummary
 id tvTime
+id tvTotalAlerts
 id unchecked
 id uniform
 id unlabeled

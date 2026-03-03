@@ -3,152 +3,259 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#0F0F1A"
+    android:background="#060810"
     android:layoutDirection="rtl">
 
+    <!-- ═══════════════════════════════════════ HEADER ═══════════════════════════════════════ -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#1A1A2E"
-        android:padding="16dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#0C0E1A"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="16dp">
 
-        <TextView
+        <!-- Icon + Title row -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="מגן ישראל - ניתוח התראות"
-            android:textColor="#FF4444"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-        <TextView
+            <!-- Shield icon box -->
+            <TextView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:text="🛡"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:background="#CC1A1A"
+                android:layout_marginStart="12dp"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="מגן ישראל"
+                    android:textColor="#F0F2FF"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="-0.02"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ניתוח התראות ואמדן שעות הסיכון"
+                    android:textColor="#8892B0"
+                    android:textSize="12sp"
+                    android:layout_marginTop="2dp"/>
+            </LinearLayout>
+
+            <!-- LIVE badge -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="● עדכון חי"
+                android:textColor="#E8293A"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:background="#1A0608"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"/>
+        </LinearLayout>
+
+        <!-- Divider line (simulated gradient with red) -->
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="אמדן שעות הסיכון לירי טילים"
-            android:textColor="#AAAACC"
-            android:textSize="13sp"
-            android:gravity="center"
-            android:layout_marginTop="2dp"/>
+            android:layout_height="1dp"
+            android:background="#E8293A"
+            android:alpha="0.35"
+            android:layout_marginTop="16dp"/>
     </LinearLayout>
 
+    <!-- ═══════════════════════════════════════ SEARCH PANEL ═══════════════════════════════════════ -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#16213E"
-        android:padding="12dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#0C0E1A"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp">
 
-        <EditText
-            android:id="@+id/etCity"
+        <!-- City input -->
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:hint="הזן שם עיר (עברית)"
-            android:textColorHint="#888899"
-            android:textColor="#FFFFFF"
-            android:background="@drawable/input_bg"
-            android:padding="10dp"
-            android:textSize="15sp"
-            android:inputType="textPersonName"
-            android:gravity="end"/>
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp">
 
+            <EditText
+                android:id="@+id/etCity"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="הזן שם עיר (עברית)"
+                android:textColorHint="#4A5568"
+                android:textColor="#F0F2FF"
+                android:background="@drawable/input_bg"
+                android:paddingStart="16dp"
+                android:paddingEnd="44dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:textSize="15sp"
+                android:inputType="textPersonName"
+                android:gravity="end|center_vertical"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📍"
+                android:textSize="18sp"
+                android:layout_gravity="start|center_vertical"
+                android:paddingStart="12dp"/>
+        </FrameLayout>
+
+        <!-- Period selector -->
         <RadioGroup
             android:id="@+id/rgMode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="end"
-            android:layout_marginTop="8dp">
+            android:layout_marginBottom="12dp">
 
-            <RadioButton android:id="@+id/rbLastDay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <RadioButton
+                android:id="@+id/rbLastDay"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
                 android:text="יום"
-                android:textColor="#CCCCDD"
+                android:textColor="#8892B0"
+                android:textSize="13sp"
+                android:gravity="center"
                 android:checked="true"
-                android:layout_marginStart="8dp"/>
+                android:background="@drawable/tab_bg_selected"
+                android:button="@null"
+                android:layout_marginStart="4dp"/>
 
-            <RadioButton android:id="@+id/rbLastWeek"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <RadioButton
+                android:id="@+id/rbLastWeek"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
                 android:text="שבוע"
-                android:textColor="#CCCCDD"
-                android:layout_marginStart="8dp"/>
+                android:textColor="#8892B0"
+                android:textSize="13sp"
+                android:gravity="center"
+                android:background="@drawable/tab_bg"
+                android:button="@null"
+                android:layout_marginStart="4dp"/>
 
-            <RadioButton android:id="@+id/rbLastMonth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <RadioButton
+                android:id="@+id/rbLastMonth"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
                 android:text="חודש"
-                android:textColor="#CCCCDD"
-                android:layout_marginStart="8dp"/>
+                android:textColor="#8892B0"
+                android:textSize="13sp"
+                android:gravity="center"
+                android:background="@drawable/tab_bg"
+                android:button="@null"
+                android:layout_marginStart="4dp"/>
 
-            <RadioButton android:id="@+id/rbCustom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <RadioButton
+                android:id="@+id/rbCustom"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
                 android:text="מותאם"
-                android:textColor="#CCCCDD"
-                android:layout_marginStart="8dp"/>
+                android:textColor="#8892B0"
+                android:textSize="13sp"
+                android:gravity="center"
+                android:background="@drawable/tab_bg"
+                android:button="@null"
+                android:layout_marginStart="4dp"/>
         </RadioGroup>
 
+        <!-- Custom date range -->
         <LinearLayout
             android:id="@+id/layoutCustomDates"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:visibility="gone"
-            android:layout_marginTop="6dp">
+            android:layout_marginBottom="12dp">
 
             <EditText
                 android:id="@+id/etToDate"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="42dp"
                 android:layout_weight="1"
                 android:hint="עד: DD.MM.YYYY"
-                android:textColorHint="#888899"
-                android:textColor="#FFFFFF"
+                android:textColorHint="#4A5568"
+                android:textColor="#F0F2FF"
                 android:background="@drawable/input_bg"
-                android:padding="8dp"
-                android:textSize="13sp"
+                android:padding="10dp"
+                android:textSize="12sp"
                 android:inputType="date"
-                android:gravity="end"
-                android:layout_marginStart="4dp"/>
+                android:gravity="end|center_vertical"
+                android:layout_marginStart="6dp"/>
 
             <EditText
                 android:id="@+id/etFromDate"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="42dp"
                 android:layout_weight="1"
                 android:hint="מ: DD.MM.YYYY"
-                android:textColorHint="#888899"
-                android:textColor="#FFFFFF"
+                android:textColorHint="#4A5568"
+                android:textColor="#F0F2FF"
                 android:background="@drawable/input_bg"
-                android:padding="8dp"
-                android:textSize="13sp"
+                android:padding="10dp"
+                android:textSize="12sp"
                 android:inputType="date"
-                android:gravity="end"
-                android:layout_marginEnd="4dp"/>
+                android:gravity="end|center_vertical"/>
         </LinearLayout>
 
+        <!-- Search button -->
         <Button
             android:id="@+id/btnSearch"
             android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:text="חפש התראות"
+            android:layout_height="48dp"
+            android:text="🔍  חפש התראות"
             android:textColor="#FFFFFF"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:backgroundTint="#CC2222"
-            android:layout_marginTop="8dp"/>
+            android:backgroundTint="#E8293A"
+            android:stateListAnimator="@null"
+            android:elevation="0dp"/>
 
         <ProgressBar
             android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_gravity="center"
+            android:layout_marginTop="8dp"
             android:visibility="gone"
-            android:layout_marginTop="4dp"/>
+            android:indeterminateTint="#E8293A"/>
     </LinearLayout>
 
+    <!-- Separator -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#111425"/>
+
+    <!-- ═══════════════════════════════════════ TABS + CONTENT ═══════════════════════════════════════ -->
     <TabHost
         android:id="@+id/tabHost"
         android:layout_width="match_parent"
@@ -159,83 +266,185 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <!-- Tab strip -->
             <TabWidget
                 android:id="@android:id/tabs"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#1A1A2E"/>
+                android:layout_height="46dp"
+                android:background="#0C0E1A"
+                android:showDividers="none"/>
 
             <FrameLayout
                 android:id="@android:id/tabcontent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <!-- ── Analysis Tab ── -->
                 <ScrollView
                     android:id="@+id/tabAnalysis"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#0F0F1A">
+                    android:background="#060810">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="12dp">
+                        android:padding="14dp">
 
+                        <!-- Empty state -->
                         <TextView
                             android:id="@+id/tvNoData"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="חפש עיר כדי לראות ניתוח שעות הסיכון"
-                            android:textColor="#AAAACC"
-                            android:textSize="15sp"
+                            android:textColor="#4A5568"
+                            android:textSize="14sp"
                             android:gravity="center"
-                            android:padding="20dp"
+                            android:padding="40dp"
                             android:visibility="visible"/>
 
-                        <com.github.mikephil.charting.charts.BarChart
-                            android:id="@+id/barChart"
-                            android:layout_width="match_parent"
-                            android:layout_height="220dp"
-                            android:visibility="gone"/>
-
+                        <!-- ── Stats row 1 ── -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:gravity="center"
-                            android:layout_marginTop="6dp">
+                            android:layout_marginBottom="10dp"
+                            android:visibility="gone"
+                            android:id="@+id/layoutStats">
 
-                            <View android:layout_width="12dp" android:layout_height="12dp" android:background="#DC3232"/>
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                                android:text=" מסוכן  " android:textColor="#CCCCDD" android:textSize="11sp"/>
-                            <View android:layout_width="12dp" android:layout_height="12dp" android:background="#FFA500"/>
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                                android:text=" בינוני  " android:textColor="#CCCCDD" android:textSize="11sp"/>
-                            <View android:layout_width="12dp" android:layout_height="12dp" android:background="#64C864"/>
-                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                                android:text=" בטוח" android:textColor="#CCCCDD" android:textSize="11sp"/>
+                            <!-- Danger card -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="80dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:background="#111425"
+                                android:padding="12dp"
+                                android:layout_marginEnd="5dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="שעות מסוכנות"
+                                    android:textColor="#4A5568"
+                                    android:textSize="10sp"
+                                    android:textAllCaps="true"/>
+
+                                <TextView
+                                    android:id="@+id/tvDangerCount"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="—"
+                                    android:textColor="#E8293A"
+                                    android:textSize="26sp"
+                                    android:textStyle="bold"/>
+                            </LinearLayout>
+
+                            <!-- Total alerts card -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="80dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:background="#111425"
+                                android:padding="12dp"
+                                android:layout_marginStart="5dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text='סה"כ התראות'
+                                    android:textColor="#4A5568"
+                                    android:textSize="10sp"
+                                    android:textAllCaps="true"/>
+
+                                <TextView
+                                    android:id="@+id/tvTotalAlerts"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="—"
+                                    android:textColor="#F59E0B"
+                                    android:textSize="26sp"
+                                    android:textStyle="bold"/>
+                            </LinearLayout>
                         </LinearLayout>
 
-                        <TextView
-                            android:id="@+id/tvSummary"
+                        <!-- ── Bar chart ── -->
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/barChart"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:background="#111425"
+                            android:padding="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:visibility="gone"/>
+
+                        <!-- Chart legend -->
+                        <LinearLayout
+                            android:id="@+id/layoutLegend"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="#EEEEFF"
-                            android:textSize="14sp"
-                            android:lineSpacingExtra="4dp"
-                            android:background="#1A1A2E"
-                            android:padding="14dp"
-                            android:layout_marginTop="10dp"/>
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:layout_marginBottom="12dp"
+                            android:visibility="gone">
+
+                            <View android:layout_width="10dp" android:layout_height="10dp" android:background="#E8293A"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="  מסוכן   " android:textColor="#8892B0" android:textSize="11sp"/>
+
+                            <View android:layout_width="10dp" android:layout_height="10dp" android:background="#F59E0B"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="  בינוני   " android:textColor="#8892B0" android:textSize="11sp"/>
+
+                            <View android:layout_width="10dp" android:layout_height="10dp" android:background="#10B981"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="  בטוח" android:textColor="#8892B0" android:textSize="11sp"/>
+                        </LinearLayout>
+
+                        <!-- ── Summary card ── -->
+                        <LinearLayout
+                            android:id="@+id/layoutSummary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:background="#111425"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="14dp"
+                            android:paddingTop="14dp"
+                            android:paddingBottom="14dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="⚠️  סיכום ניתוח"
+                                android:textColor="#E8293A"
+                                android:textSize="13sp"
+                                android:textStyle="bold"
+                                android:layout_marginBottom="8dp"/>
+
+                            <TextView
+                                android:id="@+id/tvSummary"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="#8892B0"
+                                android:textSize="13sp"
+                                android:lineSpacingExtra="5dp"/>
+                        </LinearLayout>
+
                     </LinearLayout>
                 </ScrollView>
 
+                <!-- ── Alerts Tab ── -->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/tabAlerts"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#0F0F1A"
-                    android:padding="8dp"/>
+                    android:background="#060810"
+                    android:padding="10dp"
+                    android:clipToPadding="false"/>
 
             </FrameLayout>
         </LinearLayout>
