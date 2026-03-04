@@ -25,6 +25,7 @@ public class AlertAnalyzer {
         public int totalAlerts;
         public int peakHour;
         public String riskSummary;
+        public List<HourStat> zeroHours;
     }
 
     /**
@@ -52,6 +53,13 @@ public class AlertAnalyzer {
             double pct = total > 0 ? (hourCounts[h] * 100.0 / total) : 0;
             allStats.add(new HourStat(h, hourCounts[h], pct));
         }
+        List<HourStat> zeroHours = new ArrayList<>();
+
+        for (HourStat s : allStats) {
+            if (s.count == 0) {
+                zeroHours.add(s);
+            }
+        }
         List<HourStat> sorted = new ArrayList<>(allStats);
         sorted.sort((a, b) -> b.count - a.count);
 
@@ -69,7 +77,7 @@ public class AlertAnalyzer {
         result.totalAlerts = total;
         result.peakHour = peakHour;
         result.riskSummary = riskSummary;
-
+        result.zeroHours = zeroHours;
         return result;
     }
 
@@ -89,6 +97,7 @@ public class AlertAnalyzer {
             if (s.count == 0) break;
             sb.append(String.format("%d. %02d:00 — %d התראות (%.1f%%)\n", i + 1, s.hour, s.count, s.percentage));
         }
+
 
         return sb.toString();
     }
